@@ -5,6 +5,7 @@ namespace Lands1.ViewModels
     using System.ComponentModel;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
+    using Views;
     using Xamarin.Forms;
 
     public class LoginViewModel : BaseViewModel
@@ -15,6 +16,7 @@ namespace Lands1.ViewModels
 
         #region Atributes
         //Los atributos van en minuscula , y son las mismas propiedades que se van a refrescar esto relacionado a Interfaz InotifyPropertyChanged
+        private string email;
         private string password;
         private bool isRunning;
         private bool isEnabled;
@@ -23,8 +25,8 @@ namespace Lands1.ViewModels
         #region Properties
         public string Email
         {
-            get;
-            set;
+            get { return this.email; }
+            set { SetValue(ref this.email, value); }
         }
 
         public string Password
@@ -105,12 +107,20 @@ namespace Lands1.ViewModels
                 return;
             }
 
+            //navega a la sgte pagina
+
             this.IsRunning = false;   //habilita 
             this.IsEnabled = true; //desabilita botones login register
-            await Application.Current.MainPage.DisplayAlert(
-                    "OK",
-                    "Perfecto ",
-                    "Aceptar");
+            //await Application.Current.MainPage.DisplayAlert(
+            //        "OK",
+            //        "Perfecto ",
+            //        "Aceptar");
+            
+            
+            this.Email = string.Empty;
+            this.Password = string.Empty;
+
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
         }
         #endregion
 

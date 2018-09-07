@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Lands1.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title = "Lands">
+             Title = "Login">
     <!--en el proyecto hay que insertar el nuget mvvm lights libs solo en el proyecto compartido-->
     <ContentPage.Content>
         <ScrollView
