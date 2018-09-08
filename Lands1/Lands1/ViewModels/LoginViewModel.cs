@@ -132,6 +132,9 @@ namespace Lands1.ViewModels
             this.IsRemembered = true;
             this.IsRunning = false;
             this.IsEnabled = true;
+
+            this.Email = "jzuluaga55@gmail.com";
+            this.Password = "1234";
         }
         #endregion
     }
