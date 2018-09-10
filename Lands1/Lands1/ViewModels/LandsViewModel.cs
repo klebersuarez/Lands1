@@ -49,6 +49,7 @@
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
                 return;
             }
+
             var list = (List<Land>)response.Result;
             this.Lands = new ObservableCollection<Land>(list);
         }

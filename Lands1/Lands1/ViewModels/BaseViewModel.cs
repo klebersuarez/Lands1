@@ -1,4 +1,5 @@
-﻿namespace Lands1.ViewModels
+﻿//para implementar el Inotify 
+namespace Lands1.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel;
