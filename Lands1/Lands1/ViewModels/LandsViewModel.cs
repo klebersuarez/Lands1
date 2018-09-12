@@ -6,6 +6,9 @@
     using Services;
     using Models;
     using Xamarin.Forms;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight.Command;
+    using System.Linq;
 
     public class LandsViewModel : BaseViewModel
     {
@@ -14,8 +17,11 @@
         #endregion
 
         #region Attributes
-        private ObservableCollection<Land> lands;
-        //private List<Land> lands;  como se va a pintar en un listview debe ser OBservableCollection
+        private ObservableCollection<Land> lands;  //private List<Land> lands;  como se va a pintar en un listview debe ser OBservableCollection
+        private bool isRefreshing;   //atributo refrescado de la listview
+        private string filter;
+        private List<Land> landList;
+
         #endregion
 
         #region Properties
@@ -24,6 +30,21 @@
             get { return this.lands; }
             set { SetValue(ref this.lands, value); }
         }
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { SetValue(ref this.isRefreshing, value); }
+        }
+
+        public string Filter
+        {
+            get { return this.filter; }
+            set { 
+                SetValue(ref this.filter, value);
+                this.Search();
+            }
+        }
+
         #endregion
 
 
@@ -37,7 +58,18 @@
 
         #region Methods
         private async void LoadLands()
-        {
+         {
+            this.IsRefreshing = true;
+            //chequeo si hay conexion
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRefreshing = false;
+                await Application.Current.MainPage.DisplayAlert("Error", connection.Message,"Aceptar" );
+                await Application.Current.MainPage.Navigation.PopAsync();  //retrocede pagina
+                return;
+            }
+
             //ejecuta el metodo de obter paises GetList de Land que esta en la clase ApiService
             var response = await this.apiService.GetList<Land>(
                 "https://restcountries.eu",
@@ -46,12 +78,50 @@
 
             if (!response.IsSuccess)
             {
+                this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
+                await Application.Current.MainPage.Navigation.PopAsync();  //retrocede pagina
                 return;
             }
+            this.IsRefreshing = false;
+            this.landList = (List<Land>)response.Result;
+            this.Lands = new ObservableCollection<Land>(this.landList);
+        }
+        #endregion
 
-            var list = (List<Land>)response.Result;
-            this.Lands = new ObservableCollection<Land>(list);
+        #region Commands
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadLands);
+            }
+
+        }
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(Search);
+            }
+        }
+
+        private void Search()
+        {
+            //si el filtro esta vacia , muestra la lista original nuevamente
+            if (string.IsNullOrEmpty(this.Filter))
+            {
+                this.Lands = new ObservableCollection<Land>(this.landList);
+            }
+            else 
+            {
+                //carga la lista usando LINQ System.Linq , con condiciones where
+                //ademas si quiero que la listview se actualice cada vez q ingresa una letra en el texto Filter, 
+                //en esa definicion propiedad debo llamar este metodo Search (ver propiedad Filter)
+                this.Lands = new ObservableCollection<Land>(
+                    this.landList.Where(l => l.Name.ToLower().Contains(this.Filter.ToLower()) 
+                                       || l.Capital.ToLower().Contains(this.Filter.ToLower())));
+            }
         }
         #endregion
 
