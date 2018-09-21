@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands1.Views.LandsPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundColor="Silver"
              Title = "Lands">
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Lands}"
-            Padding="5">
+            >
             <SearchBar
+                BackgroundColor="Silver"
                 Placeholder="Search ...."
                 Text="{Binding Filter, Mode=TwoWay}"
                 SearchCommand="{Binding SearchCommand}"
@@ -16,6 +18,7 @@
             </SearchBar>
             
             <ListView 
+                BackgroundColor="Silver"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
@@ -25,6 +28,14 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <Frame
+                                CornerRadius="10"
+                                HasShadow="true"
+                                Margin="5">
+                                <!--para cuando se de tab en cualquier parte del frame que contiene el grid con la lista vaya a landpage-->
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
+                                </Frame.GestureRecognizers> 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -50,6 +61,7 @@
                                         Source="ic_chevron_right">
                                     </Image>
                                 </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
