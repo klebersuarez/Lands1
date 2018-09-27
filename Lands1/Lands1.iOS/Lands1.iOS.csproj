@@ -166,5 +166,10 @@
     <BundleResource Include="Resources\onu.png" />
     <BundleResource Include="Resources\twitter_logo.png" />
     <BundleResource Include="Resources\ic_chevron_right.png" />
+    <BundleResource Include="Resources\ic_action_info.png" />
+    <BundleResource Include="Resources\ic_action_language.png" />
+    <BundleResource Include="Resources\ic_action_monetization_on.png" />
+    <BundleResource Include="Resources\ic_action_people.png" />
+    <BundleResource Include="Resources\ic_action_translate.png" />
   </ItemGroup>
 </Project>

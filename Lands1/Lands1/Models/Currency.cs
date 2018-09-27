@@ -1,4 +1,5 @@
 ﻿//debe agregarse el nuget Newtonsoftjson en el proj compartido solamente
+//clase nace de json2csharp 
 namespace Lands1.Models
 {
     using Newtonsoft.Json;
