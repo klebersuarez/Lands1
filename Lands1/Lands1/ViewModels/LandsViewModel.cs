@@ -20,7 +20,7 @@
         private ObservableCollection<LandItemViewModel> lands;  //private List<Land> lands;  como se va a pintar en un listview debe ser OBservableCollection
         private bool isRefreshing;   //atributo refrescado de la listview
         private string filter;
-        private List<Land> landList;
+        //private List<Land> landList;  //la borro porque se la creo como propiedad en la MainViewModel , para que pueda hacer listado de Borders
 
         #endregion
 
@@ -84,18 +84,16 @@
                 return;
             }
             this.IsRefreshing = false;
-            this.landList = (List<Land>)response.Result;
+            //this.landList = (List<Land>)response.Result;  //se cambia por la linea a continuacion, ya que la propiedad landList se movio a MainViewModel como LandsList
+            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
             this.Lands = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());
         }
 
-        #endregion
-
-        #region Metodos
-
+        
         //metodo que convierte la observable colection Land a LandItemViewModel para no ponerle el Icommand a la clase Land que es modelo, sino a la LandItemViewModel clase q hereda de la Land
         private IEnumerable<LandItemViewModel> ToLandItemViewModel()
         {
-            return this.landList.Select(l => new LandItemViewModel
+            return MainViewModel.GetInstance().LandsList.Select(l => new LandItemViewModel
             {
                 Alpha2Code = l.Alpha2Code,
                 Alpha3Code = l.Alpha3Code,

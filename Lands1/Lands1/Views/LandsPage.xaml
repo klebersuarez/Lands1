@@ -33,7 +33,7 @@
                                 CornerRadius="10"
                                 HasShadow="true"
                                 Margin="5">
-                                <!--para cuando se de tab en cualquier parte del frame que contiene el grid con la lista vaya a landpage-->
+                                <!--para cuando se de tabb en cualquier parte del frame que contiene el grid con la lista vaya a landpage , el metodo SelectLandCommand esta en la ViewModel LandItemViewModel-->
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
                                 </Frame.GestureRecognizers> 

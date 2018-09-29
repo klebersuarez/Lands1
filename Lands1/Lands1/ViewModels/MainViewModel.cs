@@ -1,7 +1,18 @@
 ﻿namespace Lands1.ViewModels
 {
+    using System.Collections.Generic;
+    using Models;
     public class MainViewModel
     {
+        #region Properties
+        // creo la propiedad LandList para que este disponible desde la Mainviewmodel y la borro de la LandsViewModel
+        public List<Land> LandsList
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #region ViewModels
         public LoginViewModel Login
         {

@@ -7,7 +7,7 @@
     using Models;
     using Xamarin.Forms;
 
-    //esta clase para colocar el comando SelectLandCommand ya que no se puede colocarlo en la clase Land porque daña el modelo
+    //esta clase se creo para colocar el comando SelectLandCommand ya que no se puede colocarlo en la clase Land porque daña el modelo
     public class LandItemViewModel : Land
     {
         #region Commands
@@ -23,7 +23,7 @@
         #region Metodos
         private async void SelectLand()
         {
-            MainViewModel.GetInstance().Land = new LandViewModel(this);   //se pasa como parametro el objeto seleccionado, toda la clase this. , para instanciar usando patron singleton implementado en mainviewmodel
+            MainViewModel.GetInstance().Land = new LandViewModel(this);   //se pasa como parametro el objeto seleccionado para que se ejecute en el constructor, toda la clase this. , para instanciar usando patron singleton implementado en mainviewmodel
             await Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());
         }
         #endregion
