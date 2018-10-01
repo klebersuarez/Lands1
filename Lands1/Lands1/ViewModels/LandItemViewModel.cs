@@ -7,7 +7,7 @@
     using Models;
     using Xamarin.Forms;
 
-    //esta clase se creo para colocar el comando SelectLandCommand ya que no se puede colocarlo en la clase Land porque daña el modelo
+    //esta clase se creo para colocar el comando SelectLandCommand ya que no se puede colocarlo en la clase Land porque daña el modelo.  Se llama desde el Gesture Recognizer en el View  LandsPage
     public class LandItemViewModel : Land
     {
         #region Commands

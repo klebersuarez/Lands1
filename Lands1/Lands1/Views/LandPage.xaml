@@ -10,11 +10,11 @@
             <StackLayout
                 Padding="5">
                 <Label
-                    FontSize="Default"
+                    FontSize="Large"
                     FontAttributes="Bold"
                     HorizontalOptions="Center"
                     Text="{Binding Land.Name}"
-                    TextColor="Black">    
+                    TextColor="Black">
                 </Label>
                 <Grid>
                     <Grid.ColumnDefinitions>

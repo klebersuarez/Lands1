@@ -9,10 +9,11 @@ namespace Lands1.ViewModels
     {
         #region Attributes
         // como los Borders los voy a mostrar en un listview tengo que manejarlo como Observablecollection atributo y propiedad
-        private ObservableCollection<Border> borders;    
+        private ObservableCollection<Border> borders;
+        private ObservableCollection<Currency> currencies;
+        private ObservableCollection<Language> languages;
+
         #endregion
-
-
 
         #region Properties
 
@@ -28,6 +29,17 @@ namespace Lands1.ViewModels
             set { this.SetValue(ref this.borders, value); }
         }
 
+        public ObservableCollection<Currency> Currencies
+        {
+            get { return this.currencies; }
+            set { this.SetValue(ref this.currencies, value); }
+        }
+
+        public ObservableCollection<Language> Languages
+        {
+            get { return this.languages; }
+            set { this.SetValue(ref this.languages, value); }
+        }
         #endregion
 
         #region Constructors
@@ -36,6 +48,8 @@ namespace Lands1.ViewModels
         {
             this.Land = land;
             this.LoadBorders();
+            this.Currencies = new ObservableCollection<Currency>(this.Land.Currencies);
+            this.Languages = new ObservableCollection<Language>(this.Land.Languages);
         }
         #endregion
 
