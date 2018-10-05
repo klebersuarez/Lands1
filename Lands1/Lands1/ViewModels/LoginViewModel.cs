@@ -7,12 +7,17 @@ namespace Lands1.ViewModels
     using GalaSoft.MvvmLight.Command;
     using Views;
     using Xamarin.Forms;
+    using Services;
 
     public class LoginViewModel : BaseViewModel
     {
         //#region Events
         //public event PropertyChangedEventHandler PropertyChanged;
         //#endregion
+
+        #region Services
+        private ApiService apiService;
+        #endregion
 
         #region Atributes
         //Los atributos van en minuscula , y son las mismas propiedades que se van a refrescar esto relacionado a Interfaz InotifyPropertyChanged
@@ -93,35 +98,71 @@ namespace Lands1.ViewModels
                 return;
             }
 
-
+            // valida login
             this.IsRunning = true;   //habilita 
             this.IsEnabled = false; //desabilita botones login register
-            if (this.Email != "jzuluaga55@gmail.com" || this.Password !="1234"  ){
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Datos incorrectos ",
-                    "Aceptar");
-                this.Password = string.Empty;
+
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
                 this.IsRunning = false;   //habilita 
                 this.IsEnabled = true; //desabilita botones login register
+
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    connection.Message,
+                    "Aceptar");
                 return;
             }
 
-            //navega a la sgte pagina
+            var token = await this.apiService.GetToken("https://lands1api201810.azurewebsites.net", this.Email, this.Password);
+            if (token == null)
+            {
+                this.IsRunning = false;   //habilita 
+                this.IsEnabled = true; //desabilita botones login register
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Something was Wrong, plese try later",
+                    "Aceptar");
+                return;
+            }
+            if (string.IsNullOrEmpty(token.AccessToken))
+            {
+                this.IsRunning = false;   //habilita 
+                this.IsEnabled = true; //desabilita botones login register
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    token.ErrorDescription,
+                    "Aceptar");
+                this.Password = string.Empty;
+                return;
+            }
+            //if (this.Email != "jzuluaga55@gmail.com" || this.Password !="1234"  ){
+            //    await Application.Current.MainPage.DisplayAlert(
+            //        "Error",
+            //        "Datos incorrectos ",
+            //        "Aceptar");
+            //    this.Password = string.Empty;
+            //    this.IsRunning = false;   //habilita 
+            //    this.IsEnabled = true; //desabilita botones login register
+            //    return;
+            //}
+           
 
-            this.IsRunning = false;   //habilita 
-            this.IsEnabled = true; //desabilita botones login register
+            //navega a la sgte pagina
+            this.IsRunning = false;   //des habilita 
+            this.IsEnabled = true; //habilita botones login register
+            this.Email = string.Empty;
+            this.Password = string.Empty;
             //await Application.Current.MainPage.DisplayAlert(
             //        "OK",
             //        "Perfecto ",
             //        "Aceptar");
-            
-            
-            this.Email = string.Empty;
-            this.Password = string.Empty;
-
-            MainViewModel.GetInstance().Lands = new LandsViewModel();   //para instanciar landsviewmodel usando patron singleton implementado en mainviewmodel
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Token = token;
+            mainViewModel.Lands = new LandsViewModel();   //para instanciar landsviewmodel usando patron singleton implementado en mainviewmodel
             await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
         }
         #endregion
 
@@ -129,12 +170,11 @@ namespace Lands1.ViewModels
         #region Constructor
         public LoginViewModel()
         {
+            this.apiService = new ApiService();
             this.IsRemembered = true;
             this.IsRunning = false;
             this.IsEnabled = true;
-
-            this.Email = "jzuluaga55@gmail.com";
-            this.Password = "1234";
+            
         }
         #endregion
     }

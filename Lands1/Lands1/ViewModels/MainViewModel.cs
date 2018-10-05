@@ -5,8 +5,15 @@
     public class MainViewModel
     {
         #region Properties
+        //estas propiedades estaran visibles en toda la App
         // creo la propiedad LandList para que este disponible desde la Mainviewmodel y la borro de la LandsViewModel
         public List<Land> LandsList
+        {
+            get;
+            set;
+        }
+
+        public TokenResponse Token
         {
             get;
             set;
