@@ -70,6 +70,15 @@ namespace Lands1.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Enter your e-mail....
+        /// </summary>
+        public static string EmailPlaceHolder {
+            get {
+                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter an email.
         /// </summary>
         public static string EmailValidation {
@@ -84,6 +93,15 @@ namespace Lands1.Resources {
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Remember me on this device.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
             }
         }
     }

@@ -26,6 +26,14 @@
         {
             get { return Resource.Accept; }
         }
+        public static string RememberMe
+        {
+            get { return Resource.RememberMe; }
+        }
+        public static string EmailPlaceHolder
+        {
+            get { return Resource.EmailPlaceHolder; }
+        }
     }
 
 }
