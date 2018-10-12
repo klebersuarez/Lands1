@@ -8,6 +8,7 @@ namespace Lands1.ViewModels
     using Views;
     using Xamarin.Forms;
     using Services;
+    using Helpers;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -80,13 +81,13 @@ namespace Lands1.ViewModels
 
         private async void Login()
         {
-            //validaciones que el usuario haya ingresado datos
+            //validaciones que el usuario haya ingresado datos -- con idioma usando los archivos Resource.resx 
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Debe Ingresar Email",
-                    "Aceptar");
+                    Languages.Error,
+                    Languages.EmailValidation,
+                    Languages.Accept);
                 return;
             }
             if (string.IsNullOrEmpty(this.Password))
@@ -121,7 +122,7 @@ namespace Lands1.ViewModels
                 this.IsRunning = false;   //habilita 
                 this.IsEnabled = true; //desabilita botones login register
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    "Error",                    
                     "Something was Wrong, plese try later",
                     "Aceptar");
                 return;
