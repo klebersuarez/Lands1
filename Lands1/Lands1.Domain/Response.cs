@@ -1,5 +1,5 @@
-﻿//clase para guardar las respuestas de los Servicios que consumo
-namespace Lands1.Models
+﻿//clase para guardar las respuestas de los Servicios que consumo, se mueve a Domain para usarlo en todos los proyectos
+namespace Lands1.Domain
 {
     public class Response
     {

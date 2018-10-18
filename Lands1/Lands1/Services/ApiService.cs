@@ -10,6 +10,7 @@ namespace Lands1.Services
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+    using Domain;  //poque se movio la clase Response al proyecto Domain
     using Models;
     using Newtonsoft.Json;
     using Plugin.Connectivity;
