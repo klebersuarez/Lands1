@@ -12,6 +12,7 @@ using Lands1.Domain;
 
 namespace Lands1.Backend.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private LocalDataContext db = new LocalDataContext();
