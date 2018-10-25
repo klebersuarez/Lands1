@@ -21,7 +21,9 @@ namespace Lands1.Droid.Implementations
             {
                 ci = new System.Globalization.CultureInfo(netLanguage);
             }
+#pragma warning disable CS0168 // La variable 'e1' se ha declarado pero nunca se usa
             catch (CultureNotFoundException e1)
+#pragma warning restore CS0168 // La variable 'e1' se ha declarado pero nunca se usa
             {
                 // iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
                 // fallback to first characters, in this case "en"
@@ -30,7 +32,9 @@ namespace Lands1.Droid.Implementations
                     var fallback = ToDotnetFallbackLanguage(new PlatformCulture(netLanguage));
                     ci = new System.Globalization.CultureInfo(fallback);
                 }
+#pragma warning disable CS0168 // La variable 'e2' se ha declarado pero nunca se usa
                 catch (CultureNotFoundException e2)
+#pragma warning restore CS0168 // La variable 'e2' se ha declarado pero nunca se usa
                 {
                     // iOS language not valid .NET culture, falling back to English
                     ci = new System.Globalization.CultureInfo("en");
