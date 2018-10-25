@@ -30,9 +30,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -119,11 +116,14 @@
     <AndroidResource Include="Resources\drawable\ic_action_monetization_on.png" />
     <AndroidResource Include="Resources\drawable\ic_action_people.png" />
     <AndroidResource Include="Resources\drawable\ic_action_translate.png" />
+    <AndroidResource Include="Resources\drawable\ic_settings.png" />
+    <AndroidResource Include="Resources\drawable\ic_insert_chart.png" />
+    <AndroidResource Include="Resources\drawable\ic_exit_to_app.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Lands1\Lands1.csproj">
-      <Project>{872CE310-4771-4D69-A028-4C0A0E0FA765}</Project>
+      <Project>{0043B3AE-1181-4431-BC97-2A79A38AB7DD}</Project>
       <Name>Lands1</Name>
     </ProjectReference>
   </ItemGroup>

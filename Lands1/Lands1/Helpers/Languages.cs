@@ -34,6 +34,19 @@
         {
             get { return Resource.EmailPlaceHolder; }
         }
+        public static string MyProfile
+        {
+            get { return Resource.MyProfile; }
+        }
+        public static string Stats
+        {
+            get { return Resource.Stats; }
+        }
+        public static string LogOut
+        {
+            get { return Resource.LogOut; }
+        }
+
     }
 
 }

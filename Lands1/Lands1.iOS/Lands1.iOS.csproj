@@ -172,7 +172,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Lands1\Lands1.csproj">
-      <Project>{872CE310-4771-4D69-A028-4C0A0E0FA765}</Project>
+      <Project>{0043B3AE-1181-4431-BC97-2A79A38AB7DD}</Project>
       <Name>Lands1</Name>
     </ProjectReference>
   </ItemGroup>
@@ -187,5 +187,8 @@
     <BundleResource Include="Resources\ic_action_monetization_on.png" />
     <BundleResource Include="Resources\ic_action_people.png" />
     <BundleResource Include="Resources\ic_action_translate.png" />
+    <BundleResource Include="Resources\ic_exit_to_app.png" />
+    <BundleResource Include="Resources\ic_settings.png" />
+    <BundleResource Include="Resources\ic_insert_chart.png" />
   </ItemGroup>
 </Project>

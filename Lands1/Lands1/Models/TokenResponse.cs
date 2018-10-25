@@ -1,5 +1,6 @@
 ﻿namespace Lands1.Models
-{
+{ 
+    //.
     using System;
     using Newtonsoft.Json;
 

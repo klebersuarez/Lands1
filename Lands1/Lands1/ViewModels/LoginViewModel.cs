@@ -162,7 +162,10 @@ namespace Lands1.ViewModels
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token;
             mainViewModel.Lands = new LandsViewModel();   //para instanciar landsviewmodel usando patron singleton implementado en mainviewmodel
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
+            //await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            //nueva forma al aplicar menu hamburguesa Master Detail , para que no haga retroceder al login
+            Application.Current.MainPage = new NavigationPage(new MasterPage());
 
         }
         #endregion
