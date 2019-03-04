@@ -4,7 +4,7 @@
              xmlns:i18n="clr-namespace:Lands1.Helpers"
              x:Class="Lands1.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title = "Login">
+             Title = "Login"> 
     <!--en el proyecto hay que insertar el nuget mvvm lights libs solo en el proyecto compartido-->
     <ContentPage.Content>
         <ScrollView

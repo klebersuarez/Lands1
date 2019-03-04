@@ -17,8 +17,8 @@
         #endregion
 
         #region Attributes
-        private ObservableCollection<LandItemViewModel> lands;  //private List<Land> lands;  como se va a pintar en un listview debe ser OBservableCollection
-        private bool isRefreshing;   //atributo refrescado de la listview
+        private ObservableCollection<LandItemViewModel> lands;  //private List<Land> lands;  como se va a pintar en un listview debe ser OBservableCollection, deberia se la observable coleccion de la Model Land (clase), pero se movio a la clase LandItemvieModel porque hay codigo
+        private bool isRefreshing;   //atributo refrescado de la listview al que hace referencia en la LandsView
         private string filter;
         //private List<Land> landList;  //la borro porque se la creo como propiedad en la MainViewModel , para que pueda hacer listado de Borders
 
@@ -76,7 +76,7 @@
                 "/rest",
                 "/v2/all");
 
-            if (!response.IsSuccess)
+            if (!response.IsSuccess)   //si no hay conexion a internet
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
@@ -84,9 +84,9 @@
                 return;
             }
             this.IsRefreshing = false;
-            //this.landList = (List<Land>)response.Result;  //se cambia por la linea a continuacion, ya que la propiedad landList se movio a MainViewModel como LandsList
-            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;
-            this.Lands = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());
+            //this.landList = (List<Land>)response.Result;  //se cambia por la linea a continuacion, ya que la propiedad landList se movio a MainViewModel como LandsList para que este disponible en todo el proyecto
+            MainViewModel.GetInstance().LandsList = (List<Land>)response.Result;   //la propiedad LandsList que esta en la Mainviewmodel va a tener el resultado de lista de paises
+            this.Lands = new ObservableCollection<LandItemViewModel>(this.ToLandItemViewModel());   // para convertir de una lista de tipo Land a una LandItemViewModel
         }
 
         

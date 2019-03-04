@@ -14,14 +14,15 @@ namespace Lands1.ViewModels
     {
         //#region Events
         //public event PropertyChangedEventHandler PropertyChanged;
-        //#endregion
+        //#endregion   .. esto pasa a la BaseViewModel por eso esta clase hereda de BaseViewModel
 
         #region Services
         private ApiService apiService;
         #endregion
 
         #region Atributes
-        //Los atributos van en minuscula , y son las mismas propiedades que se van a refrescar esto relacionado a Interfaz InotifyPropertyChanged
+        //Los atributos van en minuscula , y son las mismas propiedades que se van a refrescar en la vista,  
+        //esto relacionado a Interfaz InotifyPropertyChanged
         private string email;
         private string password;
         private bool isRunning;
@@ -39,6 +40,7 @@ namespace Lands1.ViewModels
         {
             get { return this.password; }
             set { SetValue(ref this.password, value); }
+            // en caso que la Inotify no este en la baseviewmodel
             //get{
             //    return this.password;
             //}
@@ -123,7 +125,7 @@ namespace Lands1.ViewModels
                 this.IsEnabled = true; //desabilita botones login register
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",                    
-                    "Something was Wrong, plese try later",
+                    "Something was Wrong, please try later",
                     "Aceptar");
                 return;
             }
@@ -178,6 +180,7 @@ namespace Lands1.ViewModels
             this.IsRemembered = true;
             this.IsRunning = false;
             this.IsEnabled = true;
+            //this.Email = "klebersuarez@gmail.com"; password 12345678
             
         }
         #endregion

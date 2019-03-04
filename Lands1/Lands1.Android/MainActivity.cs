@@ -20,9 +20,7 @@ namespace Lands1.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-#pragma warning disable CS0618 // 'CachedImageRenderer' está obsoleto: 'Use the same class in FFImageLoading.Forms.Platform namespace'
             CachedImageRenderer.Init(true);
-#pragma warning restore CS0618 // 'CachedImageRenderer' está obsoleto: 'Use the same class in FFImageLoading.Forms.Platform namespace'
             LoadApplication(new App());
         }
     }
