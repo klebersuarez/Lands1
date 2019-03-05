@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms;
-[assembly: Dependency(typeof(Lands1.Droid.Implementations.Localize))]
+﻿
+[assembly: Xamarin.Forms.Dependency(typeof(Lands1.Droid.Implementations.Localize))]
 
 namespace Lands1.Droid.Implementations
 {
