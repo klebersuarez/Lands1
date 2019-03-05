@@ -1,7 +1,11 @@
 ﻿namespace Lands1.ViewModels
 {
+    using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Models;
+    using Helpers;
+
     public class MainViewModel
     {
         #region Properties
@@ -14,6 +18,12 @@
         }
 
         public TokenResponse Token
+        {
+            get;
+            set;
+        }
+
+        public ObservableCollection<MenuItemViewModel> Menus
         {
             get;
             set;
@@ -42,10 +52,38 @@
         {
             instance = this;
             this.Login = new LoginViewModel();
+            this.LoadMenu();
 
         }
         #endregion
-        
+
+        #region Methods
+        //crea el menu hamburguesa master detail
+        private void LoadMenu()
+        {
+            this.Menus= new ObservableCollection<MenuItemViewModel>();
+
+            this.Menus.Add( new MenuItemViewModel 
+            {
+                Icon = "ic_settings",
+                PageName = "MyProfilePage",
+                Title = Languages.MyProfile
+            });
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_insert_chart",
+                PageName = "StatsPage",
+                Title = Languages.Stats
+            });
+            this.Menus.Add(new MenuItemViewModel
+            {
+                Icon = "ic_exit_to_app",
+                PageName = "LoginPage",
+                Title = Languages.LogOut
+            });
+        }
+        #endregion
+
         #region Singleton
         private static MainViewModel instance;
 

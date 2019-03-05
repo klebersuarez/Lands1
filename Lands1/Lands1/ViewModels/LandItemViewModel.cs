@@ -23,8 +23,8 @@
         #region Metodos
         private async void SelectLand()
         {
-            MainViewModel.GetInstance().Land = new LandViewModel(this);   //se pasa como parametro el objeto seleccionado para que se ejecute en el constructor, toda la clase this. , para instanciar usando patron singleton implementado en mainviewmodel
-            await Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());
+            MainViewModel.GetInstance().Land = new LandViewModel(this);   //se instancia la LandViewModel se pasa como parametro el objeto seleccionado (el pais osea Land) para que se ejecute en el constructor, toda la clase this. , para instanciar usando patron singleton implementado en mainviewmodel
+            await Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());    //antes LandPage
         }
         #endregion
 

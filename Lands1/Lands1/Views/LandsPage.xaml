@@ -13,7 +13,9 @@
             <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"></ffimageloadingsvg:SvgImageSourceConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
-
+    
+<!--    El subbinding context que esta en la propidad BindingContext del StackLoyout hace referencia a la propiedad Lands que esta en la MainViewModel que hace referencia finalmente a la LandsViewModel
+-->    
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Lands}"
@@ -28,12 +30,13 @@
              > 
             </SearchBar>
             
+            <!--en el ListViw el Itemsource va atado a la propiedad Lands que es Observable collection de la ViemModel LandsViewModel, propiedad que contiene  la lista de paises -->
             <ListView 
                 BackgroundColor="Silver"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-                ItemsSource="{Binding Lands}"  
+                ItemsSource="{Binding Lands}"    
                 SeparatorVisibility="None"
                 RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
@@ -43,7 +46,8 @@
                                 CornerRadius="10"
                                 HasShadow="true"
                                 Margin="5">
-                                <!--para cuando se de tabb en cualquier parte del frame que contiene el grid con la lista vaya a landpage , el metodo SelectLandCommand esta en la ViewModel LandItemViewModel-->
+                                <!--para cuando se de tap en cualquier parte del frame que contiene el grid con la lista vaya a la view  Landpage , el metodo SelectLandCommand  
+                                debe estar  en la clase que da origen a la lista , es decir en la clase Land  que esta en Models. Pero como en un model no debe ponerse codigo se pasa a la VieWMOdel  LandItemViewModel que hereda de Land-->
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
                                 </Frame.GestureRecognizers> 

@@ -132,4 +132,14 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Lembre-se de mim neste dispositivo</value>
   </data>
+      <data name="MyProfile" xml:space="preserve">
+    <value>Meu Perfil</value>
+  </data>
+   <data name="Stats" xml:space="preserve">
+    <value>Estatisticas</value>
+  </data>
+ <data name="LogOut" xml:space="preserve">
+    <value>Fechar Sessao</value>
+  </data>    
+
 </root>

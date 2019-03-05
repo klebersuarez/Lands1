@@ -12,6 +12,8 @@ using Lands1.Domain;
 
 namespace Lands1.Backend.Controllers
 {
+    using Helpers;
+
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
@@ -49,16 +51,31 @@ namespace Lands1.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "UserId,FirstName,LastName,Email,Telephone,ImagePath")] User user)
+        public async Task<ActionResult> Create([Bind(Include = "UserId,FirstName,LastName,Email,Telephone,ImagePath,Password,PasswordConfirm")] UserView view)
         {
             if (ModelState.IsValid)
             {
+                var user = this.ToUser(view); //hay q hacer la conversion
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
+                UsersHelper.CreateUserASP(view.Email, "User", view.Password); //para crearlo como usuario q se puede logear en la aplicacion, para generar token luego
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(view);
+        }
+
+        private User ToUser(UserView view)
+        {
+            return new User
+            {
+                Email = view.Email,
+                FirstName = view.FirstName,
+                LastName = view.LastName,
+                ImagePath = view.ImagePath,
+                Telephone = view.Telephone,
+                UserId = view.UserId
+            };
         }
 
         // GET: Users/Edit/5
